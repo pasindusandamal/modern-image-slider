@@ -3,85 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+    <title>Animal Selection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style>
-      #myButton {
-        transition: height 0.6s ease;
+      .btn-animal {
+        transition: all 0.4s ease;
         width: 100%;
-        border-radius: 0;
+        border-radius: 8px;
         height: 50px;
-        background-color: rgb(5, 71, 5);
+        background: linear-gradient(145deg, #066906, #043404);
         color: white;
-        font-size: 25px;
+        font-size: 22px;
+        font-weight: 500;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        margin-top: 10px;
       }
 
-      #myButton1 {
-        transition: height 0.6s ease;
-        width: 100%;
-        border-radius: 0;
-        height: 50px;
-        background-color: rgb(5, 71, 5);
-        color: white;
-        font-size: 25px;
+      .btn-animal:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(145deg, #088508, #054605);
       }
 
-      #myButton2 {
-        transition: height 0.6s ease;
+      .btn-animal::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
         width: 100%;
-        border-radius: 0;
-        height: 50px;
-        background-color: rgb(5, 71, 5);
-        color: white;
-        font-size: 25px;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
       }
 
-      #myButton3 {
-        transition: height 0.6s ease;
-        width: 100%;
-        border-radius: 0;
-        height: 50px;
-        background-color: rgb(5, 71, 5);
-        color: white;
-        font-size: 25px;
-      }
-
-      #myButton4 {
-        transition: height 0.6s ease;
-        width: 100%;
-        border-radius: 0;
-        height: 50px;
-        background-color: rgb(5, 71, 5);
-        color: white;
-        font-size: 25px;
+      .btn-animal:hover::after {
+        left: 100%;
       }
 
       #display {
         background-color: rgb(223, 238, 223);
-        height: 700px;
+        height: 100vh;
+        transition: background-image 0.5s ease;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
       }
 
       .container_new {
-        background-color: rgb(5, 71, 5);
-        padding: 20px;
+        background: linear-gradient(145deg, #066906, #043404);
+        padding: 0;
+        width: 100%;
+        margin: 0;
       }
 
       .col {
         margin: 0;
+        padding: 10px;
+        border-right: 2px solid rgba(255, 255, 255, 0.1);
+        border-left: 2px solid rgba(255, 255, 255, 0.1);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      .col:first-child {
+        border-left: none;
+      }
+
+      .col:last-child {
+        border-right: none;
+      }
+
+      body {
+        background-color: #f0f8f0;
+        margin: 5px;
         padding: 0;
-        border-right: 1px solid white;
-        border-left: 1px solid white;
-        height: 700px;
+        overflow: hidden;
+      }
+
+      .container-fluid {
+        padding: 0;
+      }
+
+      .row {
+        margin: 0;
       }
     </style>
   </head>
@@ -91,61 +102,31 @@
       <div class="container-fluid" id="display">
         <div class="row">
           <div class="col">
-            <button
-              type="button"
-              class="btn btn-success"
-              id="myButton"
-              onmouseover="mouseOver()"
-              onmouseout="mouseOut()"
-            >
+            <button type="button" class="btn-animal" id="myButton" onmouseover="mouseOver()" onmouseout="mouseOut()">
               Deer
             </button>
           </div>
 
           <div class="col">
-            <button
-              type="button"
-              class="btn btn-success"
-              id="myButton1"
-              onmouseover="mouseOver1()"
-              onmouseout="mouseOut1()"
-            >
+            <button type="button" class="btn-animal" id="myButton1" onmouseover="mouseOver1()" onmouseout="mouseOut1()">
               Elephant
             </button>
           </div>
 
           <div class="col">
-            <button
-              type="button"
-              class="btn btn-success"
-              id="myButton2"
-              onmouseover="mouseOver2()"
-              onmouseout="mouseOut2()"
-            >
+            <button type="button" class="btn-animal" id="myButton2" onmouseover="mouseOver2()" onmouseout="mouseOut2()">
               Parrot
             </button>
           </div>
 
           <div class="col">
-            <button
-              type="button"
-              class="btn btn-success"
-              id="myButton3"
-              onmouseover="mouseOver3()"
-              onmouseout="mouseOut3()"
-            >
+            <button type="button" class="btn-animal" id="myButton3" onmouseover="mouseOver3()" onmouseout="mouseOut3()">
               Squirrel
             </button>
           </div>
 
           <div class="col">
-            <button
-              type="button"
-              class="btn btn-success"
-              id="myButton4"
-              onmouseover="mouseOver4()"
-              onmouseout="mouseOut4()"
-            >
+            <button type="button" class="btn-animal" id="myButton4" onmouseover="mouseOver4()" onmouseout="mouseOut4()">
               Penguin
             </button>
           </div>
@@ -160,62 +141,57 @@
 
       function mouseOver() {
         const button = document.getElementById("myButton");
-        button.style.height = "100px"; 
-        document.getElementById("display").style.backgroundImage =
-          "url(71.jpg)";
+        button.style.height = "70px";
+        document.getElementById("display").style.backgroundImage = "url(71.jpg)";
       }
 
       function mouseOut() {
         const button = document.getElementById("myButton");
-        button.style.height = "50px"; 
+        button.style.height = "50px";
       }
 
       function mouseOver1() {
         const button = document.getElementById("myButton1");
-        button.style.height = "100px"; 
-        document.getElementById("display").style.backgroundImage =
-          "url(72.jpg)";
+        button.style.height = "70px";
+        document.getElementById("display").style.backgroundImage = "url(72.jpg)";
       }
 
       function mouseOut1() {
         const button = document.getElementById("myButton1");
-        button.style.height = "50px"; 
+        button.style.height = "50px";
       }
 
       function mouseOver2() {
         const button = document.getElementById("myButton2");
-        button.style.height = "100px"; 
-        document.getElementById("display").style.backgroundImage =
-          "url(73.jpg)";
+        button.style.height = "70px";
+        document.getElementById("display").style.backgroundImage = "url(73.jpg)";
       }
 
       function mouseOut2() {
         const button = document.getElementById("myButton2");
-        button.style.height = "50px"; 
+        button.style.height = "50px";
       }
 
       function mouseOver3() {
         const button = document.getElementById("myButton3");
-        button.style.height = "100px"; 
-        document.getElementById("display").style.backgroundImage =
-          "url(74.jpg)";
+        button.style.height = "70px";
+        document.getElementById("display").style.backgroundImage = "url(74.jpg)";
       }
 
       function mouseOut3() {
         const button = document.getElementById("myButton3");
-        button.style.height = "50px"; 
+        button.style.height = "50px";
       }
 
       function mouseOver4() {
         const button = document.getElementById("myButton4");
-        button.style.height = "100px"; 
-        document.getElementById("display").style.backgroundImage =
-          "url(75.jpg)";
+        button.style.height = "70px";
+        document.getElementById("display").style.backgroundImage = "url(75.jpg)";
       }
 
       function mouseOut4() {
         const button = document.getElementById("myButton4");
-        button.style.height = "50px"; 
+        button.style.height = "50px";
       }
     </script>
   </body>
